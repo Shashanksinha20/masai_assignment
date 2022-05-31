@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              
+            }
+
+            
+
+            .container{
+                margin: 30px auto;
+                display: grid;
+                grid-template-columns: 300px 300px 300px;
+                grid-template-rows: 200px 200px 200px;
+                gap: 20px;
+                width: 70%;
+                
+
+            }
+
+            .container > div{
+                text-align: center;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+
+            .container > div > button {
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                margin: 10px;
+                border-radius: 5px;
+                font-weight: 600;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 14px;
+
+            }
+
+            .container > div > img{
+                height: 70%;
+                width: 100%;
+            }
+
+            #counter{
+                text-align: center;
+                margin: 30px auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1 id = "counter">Total Products</h1>
+        <div class="container" id = "container">
+            
+        </div>
+
+        <script>
+            var container = document.getElementById('container');
+            
+
+            var productArray = [
+                {
+                    imgUrl : "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg",
+                },
+
+                {
+                    imgUrl : "https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310__340.png",
+                },
+
+                {
+                    imgUrl : "https://cdn.pixabay.com/photo/2016/09/02/11/10/boots-1638873__340.jpg",
+                },
+
+                {
+                    imgUrl : "https://cdn.pixabay.com/photo/2014/01/22/19/38/boot-250012__480.jpg",
+                },
+
+                {
+                    imgUrl : "https://media.istockphoto.com/photos/baby-sneakers-picture-id1204009732?k=20&m=1204009732&s=612x612&w=0&h=Up9q8QWoHm_n97eBAM-qgwg9XaFy71Wv7_4P_umWbdA=",
+                },
+
+                {
+                    imgUrl : "https://cdn.pixabay.com/photo/2015/10/29/01/24/shoes-1011596__480.jpg",
+                },
+
+            ]
+
+            var counter = document.getElementById('counter');
+            counter.innerText = `Total Products : ${productArray.length}`;
+
+
+            productArray.forEach(function(el,index){
+                var card = document.createElement('div');
+
+                var image = document.createElement('img');
+                image.src = el.imgUrl;
+
+                var btn1 = document.createElement('button');
+                btn1.innerText = "SOLD"
+
+                var btn2 = document.createElement('button');
+                btn2.innerText = "REMOVE"
+                btn2.addEventListener('click', function(event){
+                    event.preventDefault()
+                    deleteProduct(index);
+                })
+
+                card.append(image, btn1, btn2)
+
+
+
+                container.append(card);
+            })
+
+            function deleteProduct(id){
+                productArray.splice(id, 1)
+            }
+
+
+        </script>
+    </body>
+</html>

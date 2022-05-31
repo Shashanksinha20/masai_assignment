@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              
+            }
+            body > form{
+                text-align: center;
+            }
+
+            #form{
+                margin: 40px auto;
+            }
+
+            input[type = "submit"]{
+                padding: 5px 30px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                font-size: 15px;
+   
+            }
+
+            input[type = "submit"]:hover{
+                color: #FFFFFF;
+                background-color: #000000;
+
+            }
+            input{
+                margin: 10px;
+            }
+
+
+            .container{
+                margin: 30px auto;
+                display: grid;
+                grid-template-columns: 300px 300px  300px ;
+                grid-template-rows: 400px 400px 400px;
+                gap: 20px;
+                width: 70%;
+                
+
+            }
+            .container  p{
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+            .container > div{
+                text-align: center;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+
+            .container > div > button {
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                margin: 10px;
+                border-radius: 5px;
+                font-weight: 600;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 14px;
+
+            }
+
+            .container > div > img{
+                height: 60%;
+                width: 100%;
+            }
+
+            #counter{
+                text-align: center;
+                margin: 30px auto;
+            }
+
+        </style>
+    </head>
+    <body>  
+        <form id = "form">
+            <input placeholder="Product Name" id = "name"/>
+            <input placeholder="Category" id = "category"/>
+            <input placeholder="Image" id = "image"/>
+            <input placeholder="Price" id = "price"/>
+            <select id = "gender">
+                <option value="Choose">Choose Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <input type="checkbox" name="Sold"  id = "sold" >
+            <label for="Sold">Sold</label>
+            <input type="submit" value="ADD" />
+        </form>
+
+
+        <h1 id = "counter">Total Products</h1>
+        <div class="container" id = "container">
+            
+        </div>
+
+
+
+        <script>
+            var form = document.querySelector('form');
+            var checkbox = document.getElementById('sold');
+
+            var productArray = JSON.parse(localStorage.getItem('Products')) || [];
+
+            function AdminPanel(product, category, image, price, gender, sold)
+            {
+                this.product = product;
+                this.category = category;
+                this.image = image;
+                this.price = price;
+                this.gender = gender;
+                this.sold = sold;
+            }
+
+
+            form.addEventListener('submit', function(event){
+               
+
+                let prod = form.name.value;
+                let cat = form.category.value;
+                let img = form.image.value;
+                let prc = form.price.value;
+                let gen = form.gender.value;
+                let check = form.sold.checked;
+               
+
+                let newObj = new AdminPanel(prod, cat, img, prc, gen, check);
+                productArray.push(newObj);
+                localStorage.setItem('Products', JSON.stringify(productArray))
+
+            })
+
+            
+
+            var container = document.getElementById('container');
+            
+
+            // var productArray = [
+            //     {
+            //         imgUrl : "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg",
+            //     },
+
+            //     {
+            //         imgUrl : "https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310__340.png",
+            //     },
+
+            //     {
+            //         imgUrl : "https://cdn.pixabay.com/photo/2016/09/02/11/10/boots-1638873__340.jpg",
+            //     },
+
+            //     {
+            //         imgUrl : "https://cdn.pixabay.com/photo/2014/01/22/19/38/boot-250012__480.jpg",
+            //     },
+
+            //     {
+            //         imgUrl : "https://media.istockphoto.com/photos/baby-sneakers-picture-id1204009732?k=20&m=1204009732&s=612x612&w=0&h=Up9q8QWoHm_n97eBAM-qgwg9XaFy71Wv7_4P_umWbdA=",
+            //     },
+
+            //     {
+            //         imgUrl : "https://cdn.pixabay.com/photo/2015/10/29/01/24/shoes-1011596__480.jpg",
+            //     },
+
+            // ]
+
+            var counter = document.getElementById('counter');
+            var items  =  JSON.parse(localStorage.getItem('Products'))
+   
+            counter.innerText = `Total Products : ${items.length}`;
+
+
+            productArray.forEach(function(el,index){
+                var card = document.createElement('div');
+                card.setAttribute("class", "product");
+
+                var image = document.createElement('img');
+                image.src = el.image;
+
+                var p1 = document.createElement('p');
+                p1.innerText = el.product;
+
+                var p2 = document.createElement('p');
+                p2.innerText = el.category;
+
+
+                var p3 = document.createElement('p');
+                p3.innerText = el.price;
+
+
+
+                var p4 = document.createElement('p');
+                p4.innerText = el.gender;
+
+
+
+                // var p1 = document.createElement('p');
+
+
+                var btn1 = document.createElement('button');
+                btn1.innerText = "SOLD"
+                if(el.sold){
+                    btn1.style.backgroundColor = "green"
+                }else{
+                    btn1.style.backgroundColor = "red" 
+                }
+
+                var btn2 = document.createElement('button');
+                btn2.innerText = "REMOVE"
+                btn2.setAttribute("id", "remove");
+                btn2.addEventListener('click', function(event){
+                    deleteProduct(index);
+                })
+
+                card.append(image, p1, p2, p3, p4, btn1, btn2)
+
+
+
+                container.append(card);
+            })
+
+            function deleteProduct(id){
+                console.log("deletePressed")
+                productArray.splice(id, 1)
+                localStorage.setItem('Products', JSON.stringify(productArray))
+                window.location.reload();
+            }
+
+        </script>
+    </body>
+</html>

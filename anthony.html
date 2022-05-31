@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+            var amarObj = {
+                name : "Amar",
+                occupation : "Singer",
+                city : "Goa",
+                skill : function(){
+                   return `I am a ${this.occupation} now! and I'm sharing ${this.name} skills!`
+                } 
+            }
+
+            var akbarObj = {
+                name : "Akbar",
+                occupation : "Chef",
+                city : "Mumbai",
+                skill : function(){
+                    return `I am a ${this.occupation} now! and I'm sharing ${this.name} skills!`
+                }  
+            }
+
+            var anthonyObj = {
+                name : "Anthony",
+                occupation : "Magician",
+                city : "Kashmir",
+                skill : function(){
+                     return `I am a ${this.occupation} now! and I'm sharing ${this.name} skills!` 
+                }  
+            }
+
+
+            function shareSkill(name){
+                console.log(name+" !!! "+this.skill());
+            }
+
+            shareSkill.call(akbarObj, amarObj.name);
+            shareSkill.call(anthonyObj, akbarObj.name);
+            shareSkill.call(amarObj, anthonyObj.name);
+
+
+
+        </script>
+    </body>
+</html>

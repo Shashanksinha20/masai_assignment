@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1{
+            margin: 30px auto;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 30px auto;
+            /* border: 1px solid red; */
+            width: 50%;
+            flex-wrap: wrap;
+        }
+        .container > div{
+            height: 100px;
+            width: 100px;
+            padding: 30px;
+            font-size: 26px;
+            font-weight: bolder;
+            /* border: 1px solid red; */
+        }
+        #member-1, #member-2, #member-3{
+            border: 1px solid red;
+        }
+        .container--secondary {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 30px auto;
+            /* border: 1px solid red; */
+            width: 50%;
+            flex-wrap: wrap;
+        }
+        .container--secondary > div{
+            height: 100px;
+            width: 100px;
+            /* border: 1px solid red; */
+        }
+        button {
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: grey;
+            color: rgb(12, 0, 21);
+        }
+        body{
+            text-align: center;
+        }
+    </style>
+    <body>
+        <h1>RESULT</h1>
+
+        <div class="container" id = "container">
+            <div     id = "member-1"></div>
+                <div id = "member-2"></div>
+                    <div id = "member-3"></div>
+            </div>
+            <div class="container--secondary">
+                <div>MEMBER A</div>
+                    <div>MEMBER B</div>
+                        <div>MEMBER C</div>
+                </div>
+            <button onclick="rollTheDice()">ROLL THE DICE</button>
+        
+    
+
+
+
+        
+        <script>
+            var container = document.getElementById('container');
+            var memA = document.getElementById('member-1');
+            var memB = document.getElementById('member-2');
+            var memC = document.getElementById('member-3');
+
+
+            function rollTheDice(){
+                const rndInt1 = Math.floor(Math.random() * 6) + 1; 
+                memA.innerText = rndInt1
+
+                const rndInt2 = Math.floor(Math.random() * 6) + 1;
+                memB.innerText = rndInt2
+
+                const rndInt3 = Math.floor(Math.random() * 6) + 1;
+                memC.innerText = rndInt3 
+                // console.log(rndInt1, rndInt2, rndInt3);
+
+                if(rndInt1 === rndInt2 && rndInt2 === rndInt3 ){
+                    memA.style.backgroundColor = "blue"
+                    memB.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "blue"
+                }else if(rndInt1 > rndInt2 && rndInt2 > rndInt3){
+                    memA.style.backgroundColor = "green"
+                    memB.style.backgroundColor = "yellow"
+                    memC.style.backgroundColor = "red"
+                }
+                else if(rndIn2 > rndInt1 && rndInt1 > rndInt3){
+                    memA.style.backgroundColor = "yellow"
+                    memB.style.backgroundColor = "green"
+                    memC.style.backgroundColor = "red"
+                }else if(rndIn3 > rndInt2 && rndInt2 > rndInt1){
+                    memA.style.backgroundColor = "red"
+                    memB.style.backgroundColor = "yellow"
+                    memC.style.backgroundColor = "green"
+                }
+                else if(rndInt1 === rndInt2 && rndInt2 < rndInt3){
+                    memA.style.backgroundColor = "blue"
+                    memB.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "green"
+                }else if(rndInt1 === rndInt2 && rndInt2 > rndInt3){
+                    memA.style.backgroundColor = "blue"
+                    memB.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "red"
+
+            }else if(rndInt1 === rndInt3 && rndInt2 < rndInt3){
+                    memA.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "blue"
+                    memB.style.backgroundColor = "red"
+        }
+        else if(rndInt1 === rndInt3 && rndInt2 > rndInt3){
+                    memA.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "blue"
+                    memB.style.backgroundColor = "green"
+        }
+        else if(rndInt2 === rndInt3 && rndInt2 > rndInt1){
+                    memA.style.backgroundColor = "red"
+                    memB.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "blue"
+        }
+        else if(rndInt2 === rndInt3 && rndInt2 < rndInt1){
+                    memA.style.backgroundColor = "green"
+                    memB.style.backgroundColor = "blue"
+                    memC.style.backgroundColor = "blue"
+        }
+    }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            body{
+                margin: 0 auto;
+                text-align: center;
+            }
+           input{
+            
+                margin: 30px auto;
+                padding: 10px;
+               
+            }
+            button{
+                padding: 10px 15px;
+                border: none;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 0 20px;
+                text-align: center;
+            }
+            button:hover{
+                background-color: black;
+                color: #FFFFFF;
+            }
+            .container{
+                margin: 0 auto;
+                width: 50%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .container >  div{
+                height: 350px;
+                width: 300px;
+            }
+            .imgHolder{
+                text-align: left;
+            }
+            .imgHolder > img{
+                height: 100%;
+                width: 100%;
+            }
+
+
+            .recommendTag{
+                display: inline-block;
+                padding: 7px 10px;
+                background-color: #32de84;
+                color: #FFFF00;
+                font-size: 12px;
+                border-radius: 5px;
+            }
+            .movieDesc{
+                padding: 10px;
+            }
+            .movieDesc h1{
+                color:#090979;
+            }
+            .movieDesc p{
+                padding: 10px;
+                color: 	#404040;
+            }
+
+            #searchList{
+                
+            }
+            
+
+        </style>
+    </head>
+    <body>
+
+        <script src = "./index.js"></script>
+        <input placeholder="Search Movie" id = "search__input" size = "50"/>
+        <button onclick="makeRequest()">Search</button>
+        <div class="container" id = "container">
+            <!-- Append Movie Card Here -->
+        </div>
+        
+    </body>
+</html>
